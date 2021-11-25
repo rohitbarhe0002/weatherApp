@@ -2,26 +2,38 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './Components/Home'
-import { Weather } from './Components/Weather';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
-import { Navbar } from 'react-bootstrap';
+import { Dashboard } from './Components/Dashboard';
+import { Landing } from './Components/Landing';
+import { History } from './Components/History';
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Navbar,Container,Nav } from 'react-bootstrap';
 
 function App() {
   return (
     <>
-    <Router>
-      <Navbar  varient="dark">
-    <Link to="/Home">Home</Link>
-    <Link  to="/Weather">weather</Link>
-    </Navbar>
-    
+      <Router>
+        <Container>
+          <Navbar bg="light" varient="dark">
+            <Nav className="me-auto">
+              <Link to="/Home">Home</Link>
+              <Link to="/Dashboard">Dashboard</Link>
+              <Link to="/Landing">Landing</Link>
+              <Link to="/History">History</Link>
+            </Nav>
+          </Navbar>
+        </Container>
 
-    <Route exact path= "/"/>
-    <Route path="/Home" component={Home}/>
-    <Route path="/Weather" component={Weather}/>
-    </Router>
-  </>
-   
+
+        <Route exact path="/" />
+        <Route path="/Home" component={Home} />
+        <Route path="/Dashboard" component={Dashboard} />
+        <Route path="/Landing" component={Landing} />
+        <Route path="/History" component={History} />
+        
+      </Router>
+    </>
+
   );
 }
 
