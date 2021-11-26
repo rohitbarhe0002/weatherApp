@@ -2,7 +2,7 @@ import React from "react"
 import { ListGroup } from "react-bootstrap"
 
 export const History = () => {
-    const local = localStorage.getItem("city")
+    const local = localStorage.getItem('citySearches')
     console.log(local)
     return (
         <>

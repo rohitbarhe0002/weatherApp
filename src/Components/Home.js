@@ -19,6 +19,10 @@ const Login = () => {
   const handleClose = () => dispatch(showhide(false));
   const handleShow = () => dispatch(showhide(true));
 
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [status, setStatus] = useState(null);
+
   const { username, password } = records;
 
   const onInputchange = (event) => {
@@ -31,6 +35,7 @@ const Login = () => {
     getData();
   }, []);
 
+
   const getData = () => {
     axios.get('http://localhost:3008/user').then((response) => {
       setDetails(response.data);
@@ -38,13 +43,34 @@ const Login = () => {
     })
   };
   const onSubmit = () => {
+ 
     dispatch(showhide(false));
     if (records.username && records.password == Details.map((user) => user.username && user.password)) {
+      getLocation();
       return history.push('/Dashboard');
     }
     else
     history.push('/Home');
+   
   }
+
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setStatus('Geolocation is not supported by your browser');
+    } else {
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition((position) => {
+        setStatus(null);
+        setLat(position.coords.latitude);
+        setLng(position.coords.longitude);
+      }, () => {
+        setStatus('Unable to retrieve your location');
+      });
+    }
+  }
+
+console.log(status)
+
 
   return (
     <>
@@ -74,6 +100,11 @@ const Login = () => {
         <Modal.Footer>
         </Modal.Footer>
       </Modal>
+<div>
+      <p>{status}</p>
+  {lat && <p>Latitude: {lat}</p>}
+  {lng && <p>Longitude: {lng}</p>}
+</div>
     </>
   );
 }
