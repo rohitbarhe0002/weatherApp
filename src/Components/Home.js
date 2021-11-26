@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { Button, Container, Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { showhide } from '../action';
 import { userDeails } from '../action';
+import { showhide } from '../action';
 import axios from 'axios';
 
 const Login = () => {
@@ -14,9 +14,8 @@ const Login = () => {
   // const [show, setShow] = useState(false);
   const showForm = useSelector((state) => state.showAndhide.show);
   const records = useSelector((state) => state.showAndhide.userData);
-  const users = useSelector((state) => state.showAndhide.users);
 
-
+ 
   const handleClose = () => dispatch(showhide(false));
   const handleShow = () => dispatch(showhide(true));
 
@@ -44,7 +43,7 @@ const Login = () => {
       return history.push('/Dashboard');
     }
     else
-      alert("authentication failed!!")
+    history.push('/Home');
   }
 
   return (
@@ -58,7 +57,7 @@ const Login = () => {
 
       <Modal show={showForm} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Pleases Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 

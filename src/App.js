@@ -17,9 +17,9 @@ function App() {
           <Navbar bg="light" varient="dark">
             <Nav className="me-auto">
               <Link to="/Home">Home</Link>
-              <Link to="/Dashboard">Dashboard</Link>
+              {/* <Link to="/Dashboard">Dashboard</Link>
               <Link to="/Landing">Landing</Link>
-              <Link to="/History">History</Link>
+              <Link to="/History">History</Link> */}
             </Nav>
           </Navbar>
         </Container>
@@ -27,10 +27,10 @@ function App() {
 
         <Route exact path="/" />
         <Route path="/Home" component={Home} />
-        <Route path="/Dashboard" component={Dashboard} />
+         <Route path="/Dashboard" component={Dashboard} />
         <Route path="/Landing" component={Landing} />
         <Route path="/History" component={History} />
-        
+         
       </Router>
     </>
 
